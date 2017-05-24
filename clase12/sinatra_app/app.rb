@@ -45,7 +45,7 @@ post '/login' do
   puts "EMAIL = #{params[:email]}"
   puts "PASSWORD = #{params[:password]}"
   if email.empty? || password.empty?
-    @errors = [{message: "Email and password can't be empty"}]
+    @errors = [{message: "Sorry, email and password can't be empty"}]
     return error 400, erb(:login)
   end
   unless email == 'david@gmail.com' && password == '1234'
