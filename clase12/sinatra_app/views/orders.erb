@@ -1,0 +1,27 @@
+<form action="/orders>
+  <label for="search">
+      Serach by order id
+  <input type="text" name = "search">
+  </label>
+</form>
+
+<table>
+  <thead>
+    <td>OrderID</td>
+    <td>Price</td>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order[:order_id] %></td>
+        <td><%= order[:price] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @order %>
+    <h1>ORDER</h1>
+    <%= @order[:order_id] %>
+    <%= @order[:price] %>
+<% end %>
