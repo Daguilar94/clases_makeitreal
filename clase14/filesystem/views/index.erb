@@ -1,0 +1,20 @@
+<!--<h1> Intentos: <%= session[:tries] %> </h1>-->
+Login form
+
+<%if @errors %>
+  <% @errors.each do |error| %>
+    <small style="color:red"> <%= error[:message] %> </small>
+  <% end %>
+<% end %>
+
+<form action="/login" method="post">
+  <label for="email">
+    Email:
+    <input type="email" name="email">
+  </label>
+  <label for="password">
+    password:
+    <input type="password" name="password"
+  </label>
+  <input type="submit" name="submit">
+</form>

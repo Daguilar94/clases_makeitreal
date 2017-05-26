@@ -1,0 +1,17 @@
+<h1> Products Dashboard </h1>
+
+<table>
+  <thead>
+    <td>Name</td>
+    <td>Price</td>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+    <tr>
+      <td><a href="/products/<%=product[:name]%>"><%=product[:name]%></a></td>
+      <td><%= product[:price] %></td>
+      <td><%= product[:currency] %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

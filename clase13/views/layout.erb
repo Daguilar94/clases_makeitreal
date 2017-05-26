@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coeco Store</title>
+</head>
+<body>
+<%if @email != nil%>
+<p> Request made by: <%= @email %> </p>
+<% end %>
+  <a href="/products/new">Crear Producto</a>
+  <a href="/salir">Salir</a> <!--EXPERIMENTO-->
+  <%= yield%>
+</body>
+</html>

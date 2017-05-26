@@ -1,0 +1,21 @@
+<html>
+<body>
+
+  <% if @customer != nil %>
+   <p> Usuario actual: <%= @customer[:email] %> </p><br>
+   <%end%>
+   
+<form action="/logout" method="post">
+  <input type="submit" name="logout" value="logout">
+</form>
+<h1> Files </h1>
+<% @files.each do |file| %>
+DIR: <a href = "/files/<%=file%>"><%= file %></a>
+<a href="/download/<%=file%>"> Download </a>
+<% end %>
+<h1> Directories </h1>
+<% @directories.each do |directory| %>
+Dir: <a href = ""><%= directory %></a> <br>
+<% end %>
+</body>
+</html>
