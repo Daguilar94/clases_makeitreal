@@ -5,3 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+[
+  {
+    name: 'name1',
+    price: 2000,
+    quantity: 3
+  },
+  {
+    name: 'name2',
+    price: 3000,
+    quantity: 5
+  },
+  {
+    name: 'name3',
+    price: 4000,
+    quantity: 1
+  },
+  {
+    name: 'name4',
+    price: 5000,
+    quantity: 2
+  }
+].each do |product|
+  Product.create product
+end

@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607012429) do
+ActiveRecord::Schema.define(version: 20170609005531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adresses", force: :cascade do |t|
+    t.string "country", null: false
+    t.string "city", null: false
+    t.integer "zip"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "line1", limit: 50, default: "", null: false
+    t.string "line2", limit: 50, default: ""
+    t.index ["user_id"], name: "index_adresses_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "orders_products", id: false, force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_orders_products_on_order_id"
+    t.index ["product_id"], name: "index_orders_products_on_product_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -23,4 +49,16 @@ ActiveRecord::Schema.define(version: 20170607012429) do
     t.integer "quantity"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "username", limit: 20, null: false
+    t.string "password", limit: 16, null: false
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "adresses", "users"
+  add_foreign_key "orders", "users"
+  add_foreign_key "orders_products", "orders"
+  add_foreign_key "orders_products", "products"
 end
