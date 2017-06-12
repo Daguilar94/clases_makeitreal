@@ -83,6 +83,11 @@ o2 = Order.create(user: u1)
 o3 = Order.create(user: u2)
 o4 = Order.create(user: u1)
 
+o1.products << p1
+o1.products << p2
+o2.products << p3
+o2.products << p4
+o3.products << p1
 ------------ Clase 20 Jueves 8 Junio -------------
 
 rails g model Adress country:string city:string zip:integer user:references
@@ -106,5 +111,58 @@ class User < ApplicationRecord
 end
 ---------------------------------------
 
-user = User.new username: 'aaaaa', password:'11111', email: 'd@g.com'
-user = User.new username: 'j', password: 'yees', email: 'j@g.com'
+user = User.new username: 'aaaaaa', password: '123456789', email: 'd@g.com'
+user = User.new username: 'jjjjjj', password: '111111111', email: 'j@g.com'
+
+-------- Clase 21 Viernes 9 Junio ----------
+
+Verificar si el pais es us, debe tener un estado. Para esto se pone lo siguiente en el modelo:
+
+validates :state, presence: true, if: :us?
+
+def us?
+  country == 'us'
+end
+
+cuando corro el error.messages de un pais creado con us, en la consola me aparece el error:
+:state=>["can't be blank"]}
+
+%w(co us)--> esto crea el arreglo ['co', 'us']
+
+Para validar que el pais este entre una lista que se tienes se pone la siguiente validacion en el modelo:
+
+validates :country, inclusion: {in: %w(co us)}
+
+---SCOPES-------
+
+scope :in_inventory, -> { where('quantity > :qty', qty: 0)}
+scope :not_expired, -> { where expired: false}
+scope :order_price, -> {order :price}
+
+scope :with_products, -> (id){
+  includes(:products).find(id)
+} -- Con esta funcion solo se hace un query para incluir muchos productos a una misma orden y se evita hacer el siguiente codico con loops:
+
+all.each do |order|
+  order.products.each do |product|
+    puts "PRODUCT= #{product.sku}"
+  end
+end
+
+default scope :in_inventory, -> {where('quantity <¡> :qty', qty: 0)} --> se ejecuta en todos los querys. Es util pero peligrosos
+
+Callbacks
+
+Reciben bloque
+
+Por ejemplo normalizar los datos anntes de validar en before_validation
+
+before tratar con cuidado. Generalmente la gente trata de hacer cosas en los before after actions
+ solo se pueden cancelar los callbacks con un false como treturn o una excepcion en los before y con active reccord invalid o rollback en los after
+
+ 3.days.ago
+3.seconds.ago
+
+Servicio de google para notificaciones
+
+gema gcm

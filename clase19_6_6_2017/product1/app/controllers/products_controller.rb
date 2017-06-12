@@ -13,6 +13,10 @@ class ProductsController < ApplicationController
     product.save
     redirect_to table_path
   end
+
+  def index
+    @products = Product.in_inventory
+  end
 end
 
 #------- Solucion simon --------
