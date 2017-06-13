@@ -1,0 +1,10 @@
+<%= form_for @invoice do |f| -%>
+<% unless @invoice.errors[:total].empty?  %>
+  <%= @invoice.errors[:total].full_message %>
+<% end %>
+<%=  f.text_field :total %>
+<%=  f.text_field :user_id %>
+<%=  f.text_field :status %>
+<%=  f.text_field :order_id %>
+<%= f.submit 'submit' %>
+<% end %>

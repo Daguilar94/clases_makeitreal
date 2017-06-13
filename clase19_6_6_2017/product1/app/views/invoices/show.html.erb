@@ -1,0 +1,18 @@
+    <table>
+      <thead>
+        <tr>
+          <th>Total</th>
+          <th>User</th>
+          <th>Status</th>
+          <th>Order_id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @invoice.total%></td>
+          <td><%= @invoice.user.email %></td>
+          <td><%= @invoice.status %></td>
+          <td><%= @invoice.order_id%></td>
+        </tr>
+      </tbody>
+    </table>

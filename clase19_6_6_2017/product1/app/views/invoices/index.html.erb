@@ -1,0 +1,20 @@
+  <head>
+    <meta charset="utf-8">
+    <title>All invoices</title>
+  </head>
+  <body>
+    <table>
+      <tbody>
+        <% @invoices.each do |item| %>
+        <tr>
+          <td><%= item[:total]%></td>
+          <td><%= item[:user_id]%></td>
+          <td><%= item[:status]%></td>
+          <td><%= item[:order_id]%></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <form action="/invoices/new" method="get">
+      <input type="Submit" name="submit" value="Add">
+    </form>

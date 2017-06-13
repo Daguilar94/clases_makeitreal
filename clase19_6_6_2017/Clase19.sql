@@ -166,3 +166,7 @@ before tratar con cuidado. Generalmente la gente trata de hacer cosas en los bef
 Servicio de google para notificaciones
 
 gema gcm
+
+------ Clase 22 lunes 12 de junio ------
+
+rails g resource invoice customer:references order:references total:decimal status:string

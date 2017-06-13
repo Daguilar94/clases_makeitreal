@@ -10,4 +10,5 @@ class Product < ApplicationRecord
   #default scope :in_inventory, -> {where('quantity <¡> :qty', qty: 0)} --> se ejecuta en todos los querys. Es util pero peligrosos
   def self.not_expired_in_inventory
     in_inventory.not_expired
+  end
 end
