@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  before_action :authenticate_user!, only [:create]
   def index
     @invoices = Invoice.all
   end

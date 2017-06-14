@@ -1,0 +1,16 @@
+<%= form_tag '/search', method: 'get' do %>
+  <%= label_tag :email, 'Email'%>
+  <%= text_field_tag :email %>
+  <%= submit_tag 'Buscar' %>
+<% end %>
+
+<% if @user%>
+  <%= @user.email %><br>
+  <% @user.orders.each do |order|%><br>
+    <h3>Orden con id: <%=order.id%> </h3>
+    <h4> Contiene los siguientes productos: </h4>
+    <% order.products.each do |product| %>
+      <%=product.name %>
+    <% end %>
+  <%end %>
+<% end %>

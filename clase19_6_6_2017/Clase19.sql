@@ -88,6 +88,9 @@ o1.products << p2
 o2.products << p3
 o2.products << p4
 o3.products << p1
+
+--CREAR UN LOGIN QUE CREE USUARIOS Y USANDO LAS VALIDACIONES
+
 ------------ Clase 20 Jueves 8 Junio -------------
 
 rails g model Adress country:string city:string zip:integer user:references
@@ -169,4 +172,4 @@ gema gcm
 
 ------ Clase 22 lunes 12 de junio ------
 
-rails g resource invoice customer:references order:references total:decimal status:string
+rails g resource invoice user:references order:references total:decimal status:string
