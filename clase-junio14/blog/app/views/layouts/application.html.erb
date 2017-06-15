@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Product1</title>
+    <title>Blog</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,12 +10,11 @@
 
   <body>
     <% if user_signed_in? %>
-    <%= link_to 'log out', destroy_user_session_path, method: :delete %>
-    <h1> Hello mr. <%= current_user.email %> <h1>
-    <% else %>
-    <%= link_to 'Create_account', new_user_registration_path %>
-    <%= link_to 'Log In', new_user_session_path %>
-    <% end %>
+      <%= link_to "see all posts", user_posts_path(current_user)%>
+      <%= link_to "Logout", destroy_user_session_path, method: 'delete'%>
+    <%else%>
+        <% link_to "Create an account", new_user_registration_path%>
+    <%end%>
     <%= yield %>
   </body>
 </html>

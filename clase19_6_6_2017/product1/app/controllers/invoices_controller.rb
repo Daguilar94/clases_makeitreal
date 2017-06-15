@@ -8,6 +8,7 @@ class InvoicesController < ApplicationController
     invoice = params.require(:invoice)
     .permit(:total, :user_id, :status, :order_id)
     @invoice = Invoice.new invoice
+    @invoice.user = current_user
     if @invoice.save
       redirect_to invoice_path(@invoice)
     else
