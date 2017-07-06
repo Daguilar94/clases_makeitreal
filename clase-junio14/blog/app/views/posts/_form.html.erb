@@ -1,0 +1,24 @@
+<h1> New Post </h1>
+
+<%= form_for @post, url: user_posts_path(current_user), class: "new_post" do |f| %>
+
+
+  <div class="field">
+  <%=f.label :title, "Title"%>
+  <%=f.text_field :title, id: "title-field"%>
+  </div>
+
+  <div class="field">
+  <%=f.label :content, "Content"%>
+  <%=f.text_field :content, id: "content-field"%>
+  </div>
+
+  <%=f.submit "Create post", :disable_with => 'Creating...' %>
+
+<%end%>
+
+<script type="text/javascript">
+  $(document).on('turbolinks:load', function(){
+    new PostView()
+  })
+</script>

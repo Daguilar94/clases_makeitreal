@@ -17,9 +17,15 @@ class PostsController < ApplicationController
       render :new
     end
   end
+
   def new
     @post = Post.new
+    respond_to do |format|
+      format.html
+      format.js { render partial: 'form', content_type: 'text/plain' }
+    end
   end
+
   def edit
 
   end
