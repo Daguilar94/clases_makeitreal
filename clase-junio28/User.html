@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  </head>
+  <body>
+
+    <div class="container">
+
+      <form class="create">
+        <input class="form" name="name" type="text" placeholder="nombre">
+        <input name="lastName" type="text" placeholder="apellido">
+        <input name="user" type="text" placeholder="usuario">
+        <input name="password" type="password" placeholder="clave">
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+
+      <table class="users table table-hover text-centered">
+        <thead>
+          <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>last name</th>
+            <th>user</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+
+      $('.create').submit(function(event) {
+        event.preventDefault()
+
+        name = $('input[name="name"]').val()
+        lastName = $('input[name="lastName"]').val()
+        user = $('input[name="user"]').val()
+        password = $('input[name="password"]').val()
+        createPerson()
+        //createUser()
+        //createImage()
+        //var usr = createUser()
+        //var img = createImage()
+        //paintUser(usr)
+        //paintImage(img)
+      })
+      function createPerson(){
+        var img = function createImage() {
+          return $.ajax({
+            url: 'https://randomuser.me/api/',
+            dataType: 'json',
+          })
+          .done(function (data, status, XHR) {
+            //console.log(data)
+            //return data
+            //paintImage(data)
+            return data
+          })
+          .fail(function (XHR, status, error) {
+            alert(error)
+          })
+        }
+
+        var usr = function createUser() {
+          return $.ajax({
+            url: "https://reqres.in/api/users",
+            type: "POST",
+            data: {
+                name: name,
+                lastName: lastName,
+                user: user,
+                password: password
+                }
+          })
+          .done(function (data, status, XHR) {
+            //console.log(data)
+            //return data
+            //paintUser(data)
+            return data
+          })
+          .fail(function (XHR, status, error) {
+            alert(error)
+          })
+        }
+        paintAll(usr, img)
+      }
+
+      function paintImage(image){
+        var pic = image.results[0].picture.large
+        var userTr = '<td>'+ '<img src="'+ pic +'"></td>'
+        $('.users tbody').prepend(userTr)
+      }
+
+      function paintUser(data){
+        var name = data.name
+        var lastName = data.lastName
+        var user = data.user
+        var password = data.password
+        var userTr = '<tr><td>' + name + '</td><td>' + lastName + '</td><td>' + user +'</td><td>' + password + '</td></tr>'
+        $('.users tbody').append(userTr)
+      }
+
+      function paintAll(data, image){
+        var pic = image.results[0].picture.large
+        var name = data.name
+        var lastName = data.lastName
+        var user = data.user
+        var password = data.password
+        var userTr = '<tr><td>'+ '<img src="'+ pic +'"></td><td>' + name + '</td><td>' + lastName + '</td><td>' + user +'</td><td>' + password + '</td></tr>'
+        $('.users tbody').append(userTr)
+      }
+    })
+  </script>
+  </body>
+</html>

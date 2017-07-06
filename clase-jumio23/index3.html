@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <form id="new-product">
+        <input class="form-control" type="text" name="new-name" placeholder="Nombre">
+        <input class="form-control" type="number" name="new-price" placeholder="Precio">
+        <button class="form-control" type="submit" id="add"> Agregar producto </button>
+      </form>
+    </div>
+    <div>
+      <h1>Tu Carrito</h1>
+    </div>
+    <div>
+      <table id="carrito">
+        <thead>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th></th>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Llevas <span id="num"> 0 </span> productos</h3>
+      <h3>Tu carrito tiene un total de $ <span id="total"> 0 </span></h3>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+
+    // Un carrito de compras que contenga
+    //Cada elemento debe aparecer con nombre y precio
+    //Al final del carrito debe aparecer el número de elementos y el total del carrito
+    //Un text input para el nombrey un input para el precio
+    //Un botón que permita añadir elementos al carrito
+    //Un botón en cada elemento que permita eliminar elementos
+    //(Los elementos deben aparecer y desaparecer con animación)
+
+      precio_total = 0
+      numero_productos = 0
+
+      $('form#new-product').submit(function(event){
+        event.preventDefault()
+        var nombre = $('input[name="new-name"]').val()
+        var precio = parseInt($('input[name="new-price"]').val(), 10)
+        precio_total += precio
+        numero_productos += 1
+        var item = $('<tr><td>' + nombre + '</td><td class="price">' + precio + '</td><td><button class="remove"> Eliminar </button></td></tr>').hide().fadeIn(1000)
+        $('#carrito tbody').append(item)
+        $('#num').text(numero_productos)
+        $('#total').text(precio_total)
+      })
+
+      $(document).on('click','.remove', function(){
+        $(this).prop("disabled", true);
+        var nprice = parseInt($(this).parent().siblings('.price').text(), 10)
+        precio_total -= nprice
+        $('#total').text(precio_total)
+        numero_productos -= 1
+        $('#num').text(numero_productos)
+        $(this).parent().parent().fadeOut(1000, function(){$(this).remove()})
+      })
+  </script>
+  </body>
+</html>

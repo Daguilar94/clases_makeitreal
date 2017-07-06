@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post.user = current_user
     if @post.save
       if current_user.posts.length == 1
-        FirstPostMailer.first_post_email(current_customer).deliver_now
+        FirstPostMailer.first_post_emaildle(current_customer).deliver_now
       end
       redirect_to user_post_path(current_user, @post)
     else

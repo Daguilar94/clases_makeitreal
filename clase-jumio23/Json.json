@@ -1,0 +1,25 @@
+Jsonlint.com para validar los jsons
+Json valido
+{
+  "name": "simon",
+  "edad": 25,
+  "estudiantes": [],
+  "jobs": {
+
+  }
+}
+Json Valido
+[
+  {},
+  {}
+]
+
+Json invalido - kay debe tener comillas
+{
+  name: 'David'
+}
+
+funciones de js para procesar json:
+
+JSON.parse()
+JSON.stringify()

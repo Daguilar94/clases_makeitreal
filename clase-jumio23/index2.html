@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div class="disp">
+      <input type="text" id="input" >
+      <p></p>
+    </div>
+  <form id="city">
+    <input class="cbx" type="checkbox" name="France" value="Paris"> Paris<br>
+    <input class="cbx" type="checkbox" name="USA" value="NY city"> NY city <br>
+    <input class="cbx" type="checkbox" name="Deutschland" value="Berlin"> Berlin <br>
+    <input class="cbx" type="checkbox" name="Sweden" value="Stockolm"> Stockolm <br>
+    <input class="select" type="submit" value="Select">
+  </form>
+  <ul></ul>
+
+  <form class="real">
+    <p class="name-alert"></p>
+    <label for="name">Name
+    <input id="name" type="text" placeholder="Name"><br>
+    </label>
+    <p class="email-alert"></p>
+    <label for="email">Email
+    <input id="email" type="email" placeholder="email"><br>
+    </label>
+    <p class="password-alert"></p>
+    <label for="password">Password
+    <input id="password" type="password" placeholder="password"><br>
+    </label>
+    <input id="cbx" type="checkbox" name="tof" value="Terms of service"> Accept terms of service <br>
+    <input id="submit" type="submit" disabled="false"  value="Submit">
+  </form>
+
+
+    <p id="seconds">00</p>
+    <input id="start" type="submit" value="start">
+    <input id="reset" type="submit" valur="reset">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+//------------------------------------------------------------
+
+      // display the text of an input text in another tag
+
+      $('input[id="input"]').keyup(function(){
+        var text = $(this).val()
+        $('.disp p').text(text)
+      })
+
+      //Encuentra todos los elementos que estan checked en un formulario
+
+      $('#city').submit(function(event){
+        event.preventDefault()
+        console.log($("input:checked"))
+        var n = $("input:checked").length
+        i = 0
+        while (i < n){
+          item = $("input:checked:eq("+ i +")")
+          $('ul').append('<li>' + item.val() + '</li>')
+          i++
+        }
+      })
+      //----------Solucion simon--------
+
+//      $('.categories').submit(function(event){
+//        event.preventDefault()
+//      var selected = $('.categories input[type="checkbox"]:checked')
+//      var text = '<ul>'
+//      selected.each(function(index, ele){
+//        text += '<li>' + $(ele).val() + '</li>'
+//      })
+//      text += '</ul>'
+//        })
+//      })
+//    .
+//    .
+//    .
+
+      // Formulario que valide que los inputs tengan contenido y que contenga
+      //un accept terms of service y si no está chequeado, el botón de submit
+      //debe estar deshabilitado
+
+
+      $('.real#name').change(function(){
+        if ($(this).val() === ''){
+          $('.name-alert').text('Cant be blank')
+        }
+      })
+      $('.real#email').change(function(){
+        if ($(this).val() === ''){
+          $('.email-alert').text('Cant be blank')
+        }
+      })
+      $('.real#password').change(function(){
+        if ($(this).val() === ''){
+          $('.password-alert').text('Cant be blank')
+        }
+      })
+
+
+      $('.real').submit(function(){
+        $('.cbx').change(function(){
+          if ($(this).is(:checked)){
+            $('#submit').attr('disabled',true)
+          } else {
+            $('#submit').attr('disabled',false)
+          }
+        })
+      })
+
+      //  hacer un contador de segundos y un boton para reset
+
+      
+
+    </script>
+  </body>
+</html>

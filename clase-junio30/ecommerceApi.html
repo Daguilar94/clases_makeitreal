@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>eCommerce API</title>
+  </head>
+  <body>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    //EJERCICIO
+    //Usando reqres como API:
+    //Creará un usuario con los atributos {username, password}
+    //Luego creará una orden con los atributos {total, customer, state} debe
+    //asigarle el customer a la orden (actualizarse la orden en el API),
+    //Luego dado un arreglo de items de la forma {name, quantity, price, order}
+    //le asignará la orden creada a cada item y los guardará.
+    //una vez hecho esto, actualizará la orden marcándola como paga
+
+    $(document).ready(function(){
+
+      var items = [
+        {name: 'Zapatos nike', quantity: 1, price: 3000, order: null},
+        {name: 'Celular iphone', quantity: 1, price: 10000, order: null},
+        {name: 'parlante Bose', quantity: 2, price: 30000, order: null}
+      ]
+      var order = {total: 0, customer: null, state: 'uncharged'}
+      var customer = {username: 'Davidagui', password: '12345'}
+
+      function createUser(data){
+        return $.ajax({
+          url: "https://reqres.in/api/users",
+          type: "POST",
+          data: data
+        })
+      }
+
+      function createOrder(data){
+        return $.ajax({
+          url: "https://reqres.in/api/orders",
+          type: "POST",
+          data: data
+        })
+      }
+
+      function createItem(data){
+        return $.ajax({
+          url: "https://reqres.in/api/items",
+          type: "POST",
+          data: data
+        })
+      }
+
+      function updateOrder(order) {
+        return $.ajax({
+          url: "https://reqres.in/api/orders/" + order.id,
+          type: "PUT",
+          data: {
+            total: 0,
+            customer: order.id,
+            state: 'uncharged'
+              }
+        })
+      }
+
+      function fullFlow(customerData, orderData, itemsData) {
+        return createCustomer(customerData)
+        .then(function (createdCustomer) {
+          order.Data.customer = createCustomer.id
+          return createOrder(orderData)
+        })
+        .then
+      }
+
+
+//      createUser()
+//      .then(function(user){
+//        console.log(user.id)
+//      })
+
+    })
+    </script>
+  </body>
+</html>

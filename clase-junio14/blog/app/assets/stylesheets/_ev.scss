@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+$fuentep: 'Lato', sans-serif;
+$color: #fcbc24;
+$paddingcustom: 10px;
+@mixin nombrediv($bg) {
+  font-family: $fuentep;
+  background: $bg;
+  height: 400px;
+  color: #fff;
+  text-align: center;
+  padding: $paddingcustom;
+}
+
+
+
+.miclase1 {
+  //padding: $paddingcustom;
+  @include nombrediv(#fff)
+}
+.miclase1 h2{
+  @include nombrediv(#000)
+}
+
+.miclase2 h2{
+  @include nombrediv(#777)
+}

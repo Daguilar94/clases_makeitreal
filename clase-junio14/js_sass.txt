@@ -1,0 +1,272 @@
+newtab:6 SW registered
+index Failed to load resource: net::ERR_FAILED
+1+1
+2
+var suma = 1+3
+undefined
+suma
+4
+console.log('homa', suma)
+VM249:1 homa 4
+undefined
+'la suma es igual a ' + suma
+"la suma es igual a 4"
+alert('Hola mundo')
+undefined
+0 || false
+false
+0 || 'hola'
+"hola"
+[] || 0
+[]
+false || true
+true
+false || null
+null
+null.hola
+
+############ El js el 0, '', null, NaN, undefined son falsos
+
+VM362:1 Uncaught TypeError: Cannot read property 'hola' of null
+    at <anonymous>:1:5
+(anonymous) @ VM362:1
+null.hola()
+VM366:1 Uncaught TypeError: Cannot read property 'hola' of null
+    at <anonymous>:1:5
+(anonymous) @ VM366:1
+undefined || null
+null
+null || undefined
+undefined
+
+'1 + 2 = ' + 1 + 2
+"1 + 2 = 12"
+
+'1 + 2 = ' + (1 + 2)
+"1 + 2 = 3"
+
+1 - 2
+-1
+1 + 3
+4
+1*4
+4
+1/5
+0.2
+2 ** 5
+32
+5 > 3
+true
+5 <= 5
+true
+4 = 2
+VM448:1 Uncaught ReferenceError: Invalid left-hand side in assignment
+'2' == 2
+true
+'2' === 2
+false
+
+######### El doble igual compara el contenido y el triple el contedido y el tipo
+
+2 === 2
+true
+
+'2' !== 2
+true
+'2' !=== 2
+VM457:1 Uncaught SyntaxError: Unexpected token =
+'2' != 2
+false
+'hola' * 3
+NaN
+
+{} || 0
+VM462:1 Uncaught SyntaxError: Unexpected token ||
+var obj = {}
+undefined
+obj
+Object {}
+
+##########los 'Hashes' son objetos en js
+### puedo crear metodos objetos y funciones en tiempo de ejecucion
+
+obj.hola = function () {return 'hola'}
+function () {return 'hola'}
+obj.hola
+function () {return 'hola'}
+obj.hola()
+"hola"
+
+## Sintaxis de las finciones en js
+
+function User () {
+}
+user = new User()
+
+function User (name, lastName) {
+console.log('name = ', name, 'lastName = ', lastName)
+}
+user = new User('David', 'Aguilar')
+//name =  David lastName =  Aguilar
+
+function SayYes (name) {
+console.log('Yes' + name)
+}
+SayYes('David')
+YesDavid
+
+## Así la funcion no devuelve nada, hay que ponerle un return para que devuelva
+
+function SayYes (name) {
+return 'Yes ' + name
+}
+
+SayYes('David')
+//"Yes David"
+result = SayYes('David')
+//"Yes David"
+result
+//"Yes David"
+
+Ejercicio suma
+
+function Suma (num1, num2){
+  if ((num1 != null) && (num2 != null)){
+  return num1 + num2
+  } else if (num1 == null){
+  return num2
+  } else if (num2 == null){
+  return num1
+  }else if ((num1 == null) && (num2 == null)){
+  return 0
+  }
+}
+
+Solucion optima
+
+function Suma (num1, num2) {
+num1 = num1 || 0
+num2 = num2 || 0
+return num1 + num2
+}
+
+## condicionales
+
+if (null || 'hola'){
+    console.log('true')
+} else {
+    console.log('false')
+}
+VM975:2 true
+undefined
+if (null|| ''){
+    console.log('true')
+} else {
+    console.log('false')
+}
+VM976:4 false
+
+
+function concat arr1, arr2 {} ## Error porque tiene que tener los parentesis
+
+### ARREGLOS
+
+[1,2,3,4]
+(4) [1, 2, 3, 4]
+
+[1,2,3,4,5].forEach(function(value, index) {
+  console.log('arrr[', index, '] = ', value)
+})
+
+printArray = function(value, index) {
+  console.log('arrr[', index, '] = ', value)
+}
+
+[1,2,3,4,5].forEach(printArray)
+
+# En la consola ----
+
+printArray = function(value, index) {
+  console.log('arrr[', index, '] = ', value)
+}
+function (value, index) {
+  console.log('arrr[', index, '] = ', value)
+}
+[1,2,3,4,5].forEach(printArray)
+VM983:2 arrr[ 0 ] =  1
+VM983:2 arrr[ 1 ] =  2
+VM983:2 arrr[ 2 ] =  3
+VM983:2 arrr[ 3 ] =  4
+VM983:2 arrr[ 4 ] =  5
+------
+
+[1,2,3,4,5].map(function (value, index) {
+return value ** index
+})
+
+# En consola -----
+
+[1,2,3,4,5].map(function (value, index) {
+return value ** index
+})
+(5) [1, 2, 9, 64, 625]
+-------
+[1,2,3,4,5,6].filter(function(value) {
+  return value%2 === 0
+})
+
+esto equivale a lo siguiente de ruby: ----
+
+[1,2,3,4,5].select do |v|
+v if v%2 == 0
+end
+----
+
+##aqui la funcion fullName esta como privada
+function User (name, lastName) {
+  function fullName () {
+    return name + ' ' + lastName
+  }
+}
+#para cambiarlo es así
+
+##aqui la funcion fullName esta como privada
+function User (name, lastName) {
+  this.fullName = function () {
+    return name + ' ' + lastName
+  }
+}
+#en la consola ----
+u = new User('David', 'Aguilar')
+User {fullName: function}
+u.fullName
+function () {
+    return name + ' ' + lastName
+  }
+----
+
+function User (name, lastName) {
+  var age = 24
+  this.fullName = function () {
+    return name + ' ' + lastName
+  }
+  this.getAge = function(){
+    return age
+  }
+}
+
+function User (name, lastName) {
+  this.age = 24
+  var celular = '1234567'
+  this.fullName = function () {
+    return name + ' ' + lastName
+  }
+  this.getAge = function(){
+    return age
+  }
+}
+
+con var se le dice a las variables que son locales en el scopes
+para llamar las funciones en la consola, hay que poner los parentesis al final
+
+###### bootstrap-sprockets
