@@ -1,3 +1,19 @@
 <br>
 <h3><strong><%=@post.title%></strong><h3>
 <h5><%=@post.content%></h5>
+
+<h3>Comments</h3>
+
+<%if @comments.empty?%>
+  <h6>There are no coments</h6>
+<%else%>
+  <%@comments.each do |comment|%>
+    <h6><%=comment.content%></h6>
+  <%end%>
+<%end%>
+<%= form_for [@post, @comment] do |f| %>
+  <div class="comment-content">
+  <%=f.text_area :content, id: "comment-content-field", size: "60x3"%>
+  </div>
+  <%=f.submit "Comment", :disable_with => 'Creating...' %>
+<%end%>

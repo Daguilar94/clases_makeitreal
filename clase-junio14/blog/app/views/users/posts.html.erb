@@ -25,6 +25,7 @@
           <tr>
           <td><%= post.title %></td>
           <td><p><%= post.content %></p></td>
+          <td><%=link_to "ver comentario", user_post_path(current_user, post)%></td>
           </tr>
         <% end %>
       </tbody>

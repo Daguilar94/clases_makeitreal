@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:index]
+  
+  resources :posts, only: [:index] do
+    resources :comments
+  end
 
   resources :users, except: [:index, :create, :new] do
     resources :posts, except: [:index]
