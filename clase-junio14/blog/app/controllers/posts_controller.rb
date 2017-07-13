@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
+    @posts = Post.all
   end
 
   def create
@@ -33,6 +34,11 @@ class PostsController < ApplicationController
     @post = Post.includes(:comments).find params[:id]
     @comments = @post.comments
     @comment = Comment.new
+
+#    respond_to do |format|
+#      format.html
+#      format.js { render partial: 'comments', content_type: 'text/plain' }
+#    end
   end
 
   def update
