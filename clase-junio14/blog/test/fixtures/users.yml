@@ -12,6 +12,10 @@
 
 simon:
   email: 'sescob@example.com'
+  confirmed_at: <%= Time.zone.now %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, '123456789') %>
 
 mateo:
   email: 'mateo@example.com'
+  confirmed_at: <%= Time.zone.now %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, '1234567890') %>

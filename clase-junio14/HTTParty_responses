@@ -1,0 +1,14 @@
+body = { user: { username: 'sescob', full_name: 'simon esxcobar'}}.to_json
+headers = { 'Content-Type' => 'application/json'}
+response = HTTParty.post('http://localhost:3000/api/v1/users', body: body, headers: headers)
+
+body = { article: { title: 'El hombre', content: 'animal pensante'}}.to_json
+headers = { 'content-Type' => 'application/json'}
+response = HTTParty.post('http://localhost:3000/api/v1/users/1/articles', body: body, headers: headers)
+
+response = HTTParty.get('http://localhost:3000/api/v1/users/1')
+
+response = HTTParty.get('http://localhost:3000/api/v1/users/1')
+response['articles'].map do |article_id|
+  HTTParty.get("http://localhost:3000/api/v1/users/1/articles/#{article_id}")
+end

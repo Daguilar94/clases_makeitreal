@@ -21,6 +21,7 @@
 
   $(document).on('click', '.delete', function(){
     var id = $(this).attr('data-id')
+    console.log(id)
     $.ajax({
       type: "DELETE",
       url: "<%=post_comments_path @post%>" +"/"+ id
@@ -42,7 +43,7 @@
   }
   function drawComments(data){
     data.forEach(function(object){
-      var dest = '<a class="delete" data-id="' + object.id + '" data-remote="true">Eliminar</a>'
+      var dest = '<a class="delete" data-id="' + object.id + '" href="#" data-remote="true">Eliminar</a>'
       $('.commentary').append(object.content +'  '+ dest + '<br>')
     })
   }
